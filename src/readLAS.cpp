@@ -74,6 +74,22 @@ inline void print_progress(float progress, const std::chrono::steady_clock::time
 }
 
 // [[Rcpp::export]]
+List C_reader_fast(CharacterVector ifiles, CharacterVector ofile, CharacterVector select, CharacterVector filter)
+{
+  RLASstreamer streamer(ifiles, ofile, filter);
+  streamer.select(select);
+  streamer.allocation();
+
+  while(streamer.read_point())
+  {
+    streamer.write_point();
+  }
+
+  return streamer.terminate();
+}
+
+
+// [[Rcpp::export]]
 List C_reader(CharacterVector ifiles, CharacterVector ofile, CharacterVector select, CharacterVector filter, Rcpp::List polygons)
 {
   RLASstreamer streamer(ifiles, ofile, filter);
