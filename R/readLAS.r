@@ -162,3 +162,38 @@ read_and_write.las = function(ifiles, ofile = "", select = "*", filter = "", pol
 
 stream.las = read_and_write.las
 
+#' @rdname readfast.las
+#' @param ifiles,ofile characters. Streaming operations.
+#' @param polygons list. Internal use only.
+#' @export
+readfast.las = function(ifiles, ofile = "", select = "*", filter = "")
+{
+  stream    <- ofile != ""
+  ifiles    <- enc2native(normalizePath(ifiles))
+  ofile     <- enc2native(normalizePath(ofile, mustWork = FALSE))
+  valid     <- file.exists(ifiles)
+  supported <- tools::file_ext(ifiles) %in% c("las", "laz", "LAS", "LAZ", "ply", "PLY")
+
+  if (!all(valid))      stop("File not found", call. = F)
+  if (!all(supported))  stop("File not supported", call. = F)
+
+  check_filter(filter)
+
+  raw_list <- C_reader_fast(ifiles, ofile, select, filter)
+
+  data <- raw_list[1:3]
+  data.table::setDT(data)
+  n <- nrow(data)
+  for (name in names(raw_list)[-(1:3)])
+  {
+    attr <- raw_list[[name]]
+    if (n > 1L && length(attr) == 1L) attr <- R_compact_rep(n, attr)
+    data[[name]] <- attr
+  }
+
+  if (stream) return(invisible())
+
+  return(data)
+}
+
+
