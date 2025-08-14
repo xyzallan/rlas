@@ -16,7 +16,7 @@ read_and_write.las(
   polygons = list()
 )
 
-readfast.las(ifiles, ofile = "", select = "*", filter = "")
+readfast.las(files, select = "*", filter = "")
 }
 \arguments{
 \item{files}{array of characters}
