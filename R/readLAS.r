@@ -165,20 +165,19 @@ stream.las = read_and_write.las
 #' @rdname read.las
 #' @param ifiles,ofile characters. Streaming operations.
 #' @export
-readfast.las = function(ifiles, ofile = "", select = "*", filter = "")
+readfast.las = function(files, select = "*", filter = "")
 {
-  stream    <- ofile != ""
-  ifiles    <- enc2native(normalizePath(ifiles))
-  ofile     <- enc2native(normalizePath(ofile, mustWork = FALSE))
-  valid     <- file.exists(ifiles)
-  supported <- tools::file_ext(ifiles) %in% c("las", "laz", "LAS", "LAZ")
+  stream    <- ofile <- ""
+  ifiles    <- enc2native(normalizePath(files))
+  valid     <- file.exists(files)
+  supported <- tools::file_ext(files) %in% c("las", "laz", "LAS", "LAZ")
 
   if (!all(valid))      stop("File not found", call. = F)
   if (!all(supported))  stop("File not supported", call. = F)
 
   check_filter(filter)
 
-  raw_list <- C_reader_fast(ifiles, ofile, select, filter)
+  raw_list <- C_reader_fast(files, ofile, select, filter)
 
   data <- raw_list[1:3]
   data.table::setDT(data)
