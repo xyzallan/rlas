@@ -33,6 +33,11 @@ fast_decimal_count <- function(x) {
     .Call(`_rlas_fast_decimal_count`, x)
 }
 
+C_reader_fast <- function(ifiles, ofile, select, filter) {
+    .Call(`_rlas_C_reader_fast`, ifiles, ofile, select, filter)
+}
+
+
 C_reader <- function(ifiles, ofile, select, filter, polygons) {
     .Call(`_rlas_C_reader`, ifiles, ofile, select, filter, polygons)
 }
