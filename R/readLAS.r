@@ -162,7 +162,7 @@ read_and_write.las = function(ifiles, ofile = "", select = "*", filter = "", pol
 
 stream.las = read_and_write.las
 
-#' @rdname readfast.las
+#' @rdname read.las
 #' @param ifiles,ofile characters. Streaming operations.
 #' @export
 readfast.las = function(ifiles, ofile = "", select = "*", filter = "")
