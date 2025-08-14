@@ -102,6 +102,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// C_reader_fast
+List C_reader_fast(CharacterVector ifiles, CharacterVector ofile, CharacterVector select, CharacterVector filter);
+RcppExport SEXP _rlas_C_reader_fast(SEXP ifilesSEXP, SEXP ofileSEXP, SEXP selectSEXP, SEXP filterSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type ifiles(ifilesSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type ofile(ofileSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type select(selectSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type filter(filterSEXP);
+    rcpp_result_gen = Rcpp::wrap(C_reader_fast(ifiles, ofile, select, filter));
+    return rcpp_result_gen;
+END_RCPP
+}
 // C_reader
 List C_reader(CharacterVector ifiles, CharacterVector ofile, CharacterVector select, CharacterVector filter, Rcpp::List polygons);
 RcppExport SEXP _rlas_C_reader(SEXP ifilesSEXP, SEXP ofileSEXP, SEXP selectSEXP, SEXP filterSEXP, SEXP polygonsSEXP) {
