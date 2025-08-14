@@ -3,6 +3,7 @@
 \name{read.las}
 \alias{read.las}
 \alias{read_and_write.las}
+\alias{readfast.las}
 \title{Read data from a .las or .laz file}
 \usage{
 read.las(files, select = "*", filter = "", transform = "")
@@ -14,6 +15,8 @@ read_and_write.las(
   filter = "",
   polygons = list()
 )
+
+readfast.las(ifiles, ofile = "", select = "*", filter = "")
 }
 \arguments{
 \item{files}{array of characters}
