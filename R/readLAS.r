@@ -164,7 +164,6 @@ stream.las = read_and_write.las
 
 #' @rdname readfast.las
 #' @param ifiles,ofile characters. Streaming operations.
-#' @param polygons list. Internal use only.
 #' @export
 readfast.las = function(ifiles, ofile = "", select = "*", filter = "")
 {
@@ -172,7 +171,7 @@ readfast.las = function(ifiles, ofile = "", select = "*", filter = "")
   ifiles    <- enc2native(normalizePath(ifiles))
   ofile     <- enc2native(normalizePath(ofile, mustWork = FALSE))
   valid     <- file.exists(ifiles)
-  supported <- tools::file_ext(ifiles) %in% c("las", "laz", "LAS", "LAZ", "ply", "PLY")
+  supported <- tools::file_ext(ifiles) %in% c("las", "laz", "LAS", "LAZ")
 
   if (!all(valid))      stop("File not found", call. = F)
   if (!all(supported))  stop("File not supported", call. = F)
