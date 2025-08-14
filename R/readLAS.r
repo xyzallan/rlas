@@ -167,7 +167,7 @@ stream.las = read_and_write.las
 #' @export
 readfast.las = function(files, select = "*", filter = "")
 {
-  stream    <- ofile <- ""
+  ofile     <- ""
   ifiles    <- enc2native(normalizePath(files))
   valid     <- file.exists(files)
   supported <- tools::file_ext(files) %in% c("las", "laz", "LAS", "LAZ")
@@ -188,8 +188,6 @@ readfast.las = function(files, select = "*", filter = "")
     if (n > 1L && length(attr) == 1L) attr <- R_compact_rep(n, attr)
     data[[name]] <- attr
   }
-
-  if (stream) return(invisible())
 
   return(data)
 }
