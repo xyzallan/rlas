@@ -193,6 +193,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_rlas_fast_countbelow", (DL_FUNC) &_rlas_fast_countbelow, 2},
     {"_rlas_fast_countover", (DL_FUNC) &_rlas_fast_countover, 2},
     {"_rlas_fast_decimal_count", (DL_FUNC) &_rlas_fast_decimal_count, 1},
+    {"_rlas_C_reader_fast", (DL_FUNC) &_rlas_C_reader_fast, 4},
     {"_rlas_C_reader", (DL_FUNC) &_rlas_C_reader, 5},
     {"_rlas_lasheaderreader", (DL_FUNC) &_rlas_lasheaderreader, 1},
     {"_rlas_lasfilterusage", (DL_FUNC) &_rlas_lasfilterusage, 0},
